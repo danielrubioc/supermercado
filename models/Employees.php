@@ -29,7 +29,7 @@ class Employees extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['phone'], 'integer'],
+            [['phone','supermarket_id'], 'integer'],
             [['name', 'last_name', 'email'], 'string', 'max' => 255],
         ];
     }
@@ -45,6 +45,7 @@ class Employees extends \yii\db\ActiveRecord
             'last_name' => 'Last Name',
             'phone' => 'Phone',
             'email' => 'Email',
+            'supermarket_id' => 'Supermarket_id',
         ];
     }
 }
