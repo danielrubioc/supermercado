@@ -65,7 +65,7 @@ class EmployeesSearch extends Employees
 
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'last_name', $this->last_name])
-            ->andFilterWhere(['like', 'email', $this->email]);
+            ->andFilterWhere(['like', 'email', $this->email])
             ->andFilterWhere(['like', 'supermarket_id', $this->supermarket_id]);
 
         return $dataProvider;

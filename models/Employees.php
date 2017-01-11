@@ -21,6 +21,7 @@ class Employees extends \yii\db\ActiveRecord
     public static function tableName()
     {
         return 'employees';
+        
     }
 
     /**
@@ -47,5 +48,11 @@ class Employees extends \yii\db\ActiveRecord
             'email' => 'Email',
             'supermarket_id' => 'Supermarket_id',
         ];
+    }
+    public function getSupermarket()
+    {
+        return $this->hasOne(Supermarket::className(), ['supermarket_id' => 'id']);
+        
+
     }
 }

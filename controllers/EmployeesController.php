@@ -4,10 +4,13 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Employees;
+use app\models\Supermarkets;
 use app\models\EmployeesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
+use backend\models\Standard;
 
 /**
  * EmployeesController implements the CRUD actions for Employees model.
@@ -42,6 +45,17 @@ class EmployeesController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+        
+    }
+    public function actionIndexx()
+    {   
+        $superlist = ArrayHelper::map(Supermarkets::find()->all(), 'id', 'name');     
+        $super = Supermarkets::findOne(1);
+        $employees = $super->employees;
+        return $this->render('indexx', [
+                'employees' => $employees,
+                'superlist' => $superlist
+            ]);
     }
 
     /**
@@ -62,14 +76,16 @@ class EmployeesController extends Controller
      * @return mixed
      */
     public function actionCreate()
-    {
+    {   
+        
         $model = new Employees();
-
+        $superlist = ArrayHelper::map(Supermarkets::find()->all(), 'id', 'name');
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'superlist' => $superlist
             ]);
         }
     }
@@ -81,7 +97,8 @@ class EmployeesController extends Controller
      * @return mixed
      */
     public function actionUpdate($id)
-    {
+    {   
+        $superlist = ArrayHelper::map(Supermarkets::find()->all(), 'id', 'name');
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -89,6 +106,7 @@ class EmployeesController extends Controller
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'superlist' => $superlist
             ]);
         }
     }

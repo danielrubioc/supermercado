@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use backend\models\Standard;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Employees */
@@ -19,7 +21,8 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'phone')->textInput() ?>
 
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'supermarket_id')->textInput() ?>
+    
+    <?= Html::activeDropDownList($model, 'supermarket_id', $superlist) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
