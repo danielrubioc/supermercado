@@ -43,6 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </tr>
         </thead>
         <tbody>
+        <?php if(count($employees)){ ?>
             <?php foreach($employees as $index => $employee){ ?>
             <tr>
                 <td><?= $index + 1; ?></td>
@@ -50,6 +51,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 <td><?= $employee->last_name; ?></td>
             </tr>
             <?php } ?>
+        <?php }else{ ?>
+            <tr>
+                <td colspan="3" class="text-center"><h3>No hay empleados en este supermercado</h3></td>
+            </tr>
+        <?php } ?>
         </tbody>
     </table>
 
