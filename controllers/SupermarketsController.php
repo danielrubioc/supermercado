@@ -70,6 +70,7 @@ class SupermarketsController extends Controller
         $model = new Supermarkets();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', "Guardado correctamente!");
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -89,6 +90,7 @@ class SupermarketsController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', "Modificado correctamente!");
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
@@ -107,6 +109,7 @@ class SupermarketsController extends Controller
     {
         $this->findModel($id)->delete();
 
+        Yii::$app->session->setFlash('success', "Eliminado correctamente!");
         return $this->redirect(['index']);
     }
 

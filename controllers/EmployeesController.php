@@ -81,6 +81,7 @@ class EmployeesController extends Controller
         $model = new Employees();
         $superlist = ArrayHelper::map(Supermarkets::find()->all(), 'id', 'name');
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', "Guardado correctamente!");
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -102,6 +103,7 @@ class EmployeesController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', "Modificado correctamente!");
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
@@ -121,6 +123,7 @@ class EmployeesController extends Controller
     {
         $this->findModel($id)->delete();
 
+        Yii::$app->session->setFlash('success', "Eliminado correctamente!");
         return $this->redirect(['index']);
     }
 

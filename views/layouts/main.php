@@ -61,6 +61,11 @@ AppAsset::register($this);
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
+        <?php
+            foreach(Yii::$app->session->getAllFlashes() as $key => $message) {
+                echo '<div class="alert alert-' . $key . '" role="alert">' . $message . "</div>\n";
+            }
+        ?>
         <?= $content ?>
     </div>
 </div>
@@ -74,6 +79,12 @@ AppAsset::register($this);
 </footer>
 
 <?php $this->endBody() ?>
+
+<script type="text/javascript">
+$(".alert").fadeTo(3000, 500).slideUp(500, function(){
+    $(".alert").slideUp(500);
+});
+</script>
 
 </body>
 </html>
