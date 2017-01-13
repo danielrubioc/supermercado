@@ -51,8 +51,6 @@ class Employees extends \yii\db\ActiveRecord
     }
     public function getSupermarket()
     {
-        return $this->hasOne(Supermarket::className(), ['supermarket_id' => 'id']);
-        
-
+        return $this->hasOne(Supermarkets::className(), ['id' => 'supermarket_id']);
     }
 }

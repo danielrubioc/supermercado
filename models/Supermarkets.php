@@ -50,6 +50,7 @@ class Supermarkets extends \yii\db\ActiveRecord
     {
         return $this->hasMany(SupermarketProduct::className(), ['supermarket_id' => 'id']);
     }
+    
     public function getEmployees()
     {
          return $this->hasMany(Employees::className(), ['supermarket_id' => 'id']);
