@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Supermarkets;
+use app\models\Employees;
 use app\models\SearchSupermarkets;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -51,8 +52,11 @@ class SupermarketsController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        $employees = $model->employees;
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'employees' => $employees
         ]);
     }
 

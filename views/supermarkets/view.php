@@ -33,4 +33,24 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
 
+    <table class="table">
+        <caption><h4>Empleados</h4></caption>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach($employees as $index => $employee){ ?>
+            <tr>
+                <td><?= $index + 1; ?></td>
+                <td><?= $employee->name; ?></td>
+                <td><?= $employee->last_name; ?></td>
+            </tr>
+            <?php } ?>
+        </tbody>
+    </table>
+
 </div>
