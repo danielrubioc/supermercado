@@ -76,17 +76,7 @@ AppAsset::register($this);
 </footer>
 
 <?php $this->endBody() ?>
-<script type="text/javascript">
-$(document).ready(function (){
-    $('#w0 button').attr('disabled', 'disabled');
-    $('#supermarkets-name').keyup(function (){
-        var vacio;
-        if ($(this).val().lenght != 0) {
-            $('#w0 button').removeAttr('disabled');
-        }else $('#w0 button').attr('disabled', 'disabled');
-    });
-});
-</script>
+
 </body>
 </html>
 <?php $this->endPage() ?>

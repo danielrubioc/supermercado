@@ -42,11 +42,11 @@ class Employees extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'last_name' => 'Last Name',
-            'phone' => 'Phone',
-            'email' => 'Email',
-            'supermarket_id' => 'Supermarket_id',
+            'name' => 'Nombre',
+            'last_name' => 'Apellido',
+            'phone' => 'Contacto',
+            'email' => 'Correo',
+            'supermarket_id' => 'Supermercado',
         ];
     }
     public function getSupermarket()
