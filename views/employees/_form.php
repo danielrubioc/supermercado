@@ -12,7 +12,7 @@ use backend\models\Standard;
 
 <div class="employees-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
@@ -21,6 +21,8 @@ use backend\models\Standard;
     <?= $form->field($model, 'phone')->textInput() ?>
 
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'avatar')->fileInput() ?>
     
     <label>Supermercado</label>
     <p><?= Html::activeDropDownList($model, 'supermarket_id', $superlist, ['class'=>'form-control']) ?></p>

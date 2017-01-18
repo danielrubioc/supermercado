@@ -32,6 +32,7 @@ class Employees extends \yii\db\ActiveRecord
         return [
             [['phone','supermarket_id'], 'integer'],
             [['name', 'last_name', 'email'], 'string', 'max' => 255],
+            [['avatar'], 'file', 'extensions' => 'png, jpg'],
         ];
     }
 
@@ -47,10 +48,16 @@ class Employees extends \yii\db\ActiveRecord
             'phone' => 'Contacto',
             'email' => 'Correo',
             'supermarket_id' => 'Supermercado',
+            'avatar' => 'Avatar',
         ];
     }
     public function getSupermarket()
     {
         return $this->hasOne(Supermarkets::className(), ['id' => 'supermarket_id']);
+    }
+    /*retorno de imagen para widget*/
+    public function getImageUrl()
+    {
+        return \Yii::$app->request->BaseUrl.'/uploads/'.$this->avatar;
     }
 }

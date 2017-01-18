@@ -12,11 +12,13 @@ use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use backend\models\Standard;
 
+use yii\web\UploadedFile;
+
 /**
  * EmployeesController implements the CRUD actions for Employees model.
  */
 class EmployeesController extends Controller
-{
+{   public $avatar;
     /**
      * @inheritdoc
      */
@@ -80,7 +82,16 @@ class EmployeesController extends Controller
         
         $model = new Employees();
         $superlist = ArrayHelper::map(Supermarkets::find()->all(), 'id', 'name');
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) 
+        {
+
+            $avatar = UploadedFile::getInstance($model, 'avatar');
+            $model->avatar = $avatar;
+            //var_dump($model);die();
+            if ($model->save()) {
+               $avatar->saveAs('uploads/' . $avatar->baseName . '.' . $avatar->extension);
+            }
+
             Yii::$app->session->setFlash('success', "Guardado correctamente!");
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -126,6 +137,7 @@ class EmployeesController extends Controller
         Yii::$app->session->setFlash('success', "Eliminado correctamente!");
         return $this->redirect(['index']);
     }
+
 
     /**
      * Finds the Employees model based on its primary key value.

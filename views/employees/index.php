@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 
+use yii\helpers\Url;
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\EmployeesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -30,6 +32,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'phone',
             'email:email',
             'supermarket.name',
+            [   
+                'attribute' => 'Avatar',
+                'format' => ['image',['width'=>'100','height'=>'100']],
+                'value' => function ($model) {
+                    return $model->getImageUrl(); 
+                },
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
