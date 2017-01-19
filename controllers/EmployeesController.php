@@ -122,7 +122,7 @@ class EmployeesController extends Controller
             $avatar = UploadedFile::getInstance($model, 'avatar');
             $model->avatar = $avatar;
             //var_dump($model);die();
-            if ($model->avatar === "") {
+            if ($model->avatar == "") {
                $model->save(); 
             }else
             {   

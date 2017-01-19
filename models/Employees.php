@@ -32,7 +32,9 @@ class Employees extends \yii\db\ActiveRecord
         return [
             [['phone','supermarket_id'], 'integer'],
             [['name', 'last_name', 'email'], 'string', 'max' => 255],
+            [['name','last_name','email','phone'], 'required'],
             [['avatar'], 'file', 'extensions' => 'png, jpg'],
+            [['email'], 'email'],
         ];
     }
 
@@ -48,7 +50,6 @@ class Employees extends \yii\db\ActiveRecord
             'phone' => 'Contacto',
             'email' => 'Correo',
             'supermarket_id' => 'Supermercado',
-            'avatar' => 'Avatar',
         ];
     }
     public function getSupermarket()

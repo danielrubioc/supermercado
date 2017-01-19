@@ -95,6 +95,11 @@ a.desc:after {
     padding: 15px;
     border: none;
 }
+.img-avatar-bx {
+    max-width: 150px;
+    height: 150px;
+    margin-top: -70px;
+}
 
 @media(max-width:767px) {
     .nav li > form > button.logout {
