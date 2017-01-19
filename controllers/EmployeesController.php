@@ -88,8 +88,12 @@ class EmployeesController extends Controller
             $avatar = UploadedFile::getInstance($model, 'avatar');
             $model->avatar = $avatar;
             //var_dump($model);die();
-            if ($model->save()) {
-               $avatar->saveAs('uploads/' . $avatar->baseName . '.' . $avatar->extension);
+            if ($model->avatar == "") {
+               $model->save(); 
+            }else
+            {   
+                $model->save();
+                $avatar->saveAs('uploads/' . $avatar->baseName . '.' . $avatar->extension);
             }
 
             Yii::$app->session->setFlash('success', "Guardado correctamente!");
@@ -113,7 +117,20 @@ class EmployeesController extends Controller
         $superlist = ArrayHelper::map(Supermarkets::find()->all(), 'id', 'name');
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+
+            $avatar = UploadedFile::getInstance($model, 'avatar');
+            $model->avatar = $avatar;
+            //var_dump($model);die();
+            if ($model->avatar === "") {
+               $model->save(); 
+            }else
+            {   
+                $model->save();
+                $avatar->saveAs('uploads/' . $avatar->baseName . '.' . $avatar->extension);
+            }
+
+
             Yii::$app->session->setFlash('success', "Modificado correctamente!");
             return $this->redirect(['view', 'id' => $model->id]);
         } else {

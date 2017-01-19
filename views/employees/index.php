@@ -32,6 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'phone',
             'email:email',
             'supermarket.name',
+            /* mostrar imagen dentro de widget
             [   
                 'attribute' => 'Avatar',
                 'format' => ['image',['width'=>'100','height'=>'100']],
@@ -39,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $model->getImageUrl(); 
                 },
             ],
-
+            */
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
