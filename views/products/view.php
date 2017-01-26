@@ -34,3 +34,23 @@ $this->params['breadcrumbs'][] = $this->title;
     ]) ?>
 
 </div>
+
+<table class="table">
+    <caption><h3>Supermercados con este producto</h3></caption>
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>ID</th>
+            <th>Nombre</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach($model->supermarketProducts as $index => $super){ ?>
+        <tr>
+            <td><?= $index + 1 ?></td>
+            <td><?= $super->id ?></td>
+            <td><?= $super->name ?></td>
+        </tr>
+        <?php } ?>
+    </tbody>
+</table>

@@ -4,10 +4,12 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Products;
+use app\models\Supermarkets;
 use app\models\ProductsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 
 /**
  * ProductsController implements the CRUD actions for Products model.
@@ -64,13 +66,18 @@ class ProductsController extends Controller
     public function actionCreate()
     {
         $model = new Products();
+        $supermarkets = ArrayHelper::map(Supermarkets::find()->all(), 'id', 'name');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $body = Yii::$app->request->post('Products');
+            $supermarket = Supermarkets::findOne($body['supermarketProducts']);
+            $model->link('supermarketProducts', $supermarket);
             Yii::$app->session->setFlash('success', "Guardado correctamente!");
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'supermarkets' => $supermarkets,
             ]);
         }
     }
@@ -84,8 +91,12 @@ class ProductsController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $supermarkets = ArrayHelper::map(Supermarkets::find()->all(), 'id', 'name');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            /*$body = Yii::$app->request->post('Products');
+            $supermarket = Supermarkets::findOne($body['supermarketProducts']);
+            $model->link('supermarketProducts', $supermarket);*/
             Yii::$app->session->setFlash('success', "Modificado correctamente!");
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
