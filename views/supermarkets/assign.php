@@ -5,6 +5,7 @@ use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 
 $this->title = Yii::t('app', 'Asignación de productos');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Supermarkets'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 
