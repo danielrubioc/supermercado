@@ -84,9 +84,12 @@ AppAsset::register($this);
 $(".alert").fadeTo(3000, 500).slideUp(500, function(){
     $(".alert").slideUp(500);
 });
-
-  // selector multiple
-  $('#pre-selected-options').multiSelect({ keepOrder: true });
+// selector multiple
+$('#pre-selected-options').multiSelect({
+    selectableHeader: "<div class='custom-header text-info'>Sin Seleccionar</div>",
+    selectionHeader: "<div class='custom-header text-info'>Seleccionados</div>",
+    keepOrder: true
+});
 </script>
 
 </body>

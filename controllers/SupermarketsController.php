@@ -114,9 +114,37 @@ class SupermarketsController extends Controller
         Yii::$app->session->setFlash('success', "Eliminado correctamente!");
         return $this->redirect(['index']);
     }
-    public function actionAssign(){
+
+    public function actionAssign($id){
+        $supermarket = Supermarkets::findOne($id);
+        $old_products = $supermarket->supermarketProducts;
+        
+        if (Yii::$app->request->post('products')) {
+            if (count($old_products)) {
+                foreach ($old_products as $old_product) {
+                    $supermarket->unlink('supermarketProducts', Products::findOne($old_product), true);
+                }
+            }
+            
+            $new_products = Yii::$app->request->post('products');
+            
+            if (count($new_products)) {
+                foreach ($new_products as $new_product) {
+                    $supermarket->link('supermarketProducts', Products::findOne($new_product));
+                }
+            }
+            
+            $old_products = $supermarket->supermarketProducts;
+        }
+        
+        $selected_products = ArrayHelper::map($old_products, 'id', 'name');
         $productos = ArrayHelper::map(Products::find()->all(), 'id', 'name');  
-        return $this->render('assign', ['productos'=>$productos]);
+        
+        return $this->render('assign', [
+            'productos'=>$productos, 
+            'supermarket'=>$supermarket, 
+            'selected_products'=>$selected_products,
+        ]);
     }
 
     /**
