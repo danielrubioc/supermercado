@@ -102,6 +102,7 @@ class ProductsController extends Controller
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'supermarkets' => $supermarkets,
             ]);
         }
     }
