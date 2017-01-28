@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'last_name',
             'phone',
-            'email:email',
+            'email',
             'supermarket.name',
             /* mostrar imagen dentro de widget
             [   
