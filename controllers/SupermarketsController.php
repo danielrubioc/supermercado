@@ -9,6 +9,8 @@ use app\models\SearchSupermarkets;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\Products;
+use yii\helpers\ArrayHelper;
 
 /**
  * SupermarketsController implements the CRUD actions for Supermarkets model.
@@ -111,6 +113,10 @@ class SupermarketsController extends Controller
 
         Yii::$app->session->setFlash('success', "Eliminado correctamente!");
         return $this->redirect(['index']);
+    }
+    public function actionAssign(){
+        $productos = ArrayHelper::map(Products::find()->all(), 'id', 'name');  
+        return $this->render('assign', ['productos'=>$productos]);
     }
 
     /**

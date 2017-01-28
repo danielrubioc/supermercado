@@ -25,4 +25,5 @@ return [
 	'Create' => 'Crear',
 	'Update' => 'Modificar',
 	'Delete' => 'Eliminar',
+	'Assign' => 'Asignar',
 ];
