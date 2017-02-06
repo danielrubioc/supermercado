@@ -29,6 +29,8 @@ class Products extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'string', 'max' => 256],
+            [['category_id'], 'integer'],
+            [['name', 'category_id'], 'required'],
         ];
     }
 
@@ -40,6 +42,7 @@ class Products extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'Nombre',
+            'category_id' => 'Categoria',
         ];
     }
 
@@ -50,5 +53,9 @@ class Products extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Supermarkets::className(), ['id' => 'supermarket_id'])
                 ->viaTable('product_supermarket', ['product_id' => 'id']);
+    }
+    public function getCategories()
+    {
+        return $this->hasOne(Products::className(), ['id' => 'category_id']);
     }
 }
