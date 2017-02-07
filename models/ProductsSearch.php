@@ -63,6 +63,7 @@ class ProductsSearch extends Products
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['like', 'sku', $this->sku]);
 
         return $dataProvider;
     }

@@ -16,6 +16,7 @@ class m170206_210942_add_category_column_to_products_table extends Migration
     public function up()
     {
         $this->addColumn('products', 'category_id', $this->integer());
+        $this->addColumn('products', 'sku', $this->string());
 
         // creates index for column `category_id`
         $this->createIndex(
@@ -53,5 +54,6 @@ class m170206_210942_add_category_column_to_products_table extends Migration
         );
 
         $this->dropColumn('products', 'category_id');
+        $this->dropColumn('products', 'sku');
     }
 }

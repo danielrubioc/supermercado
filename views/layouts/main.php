@@ -38,7 +38,14 @@ AppAsset::register($this);
         'items' => [
             ['label' => Yii::t('app', 'Home'), 'url' => ['/']],
             ['label' => Yii::t('app', 'Supermarkets'), 'url' => ['/supermarkets']],
-            ['label' => Yii::t('app', 'Products'), 'url' => ['/products']],
+            [
+                      'label' => 'Products',
+                      'items' => 
+                      [
+                           ['label' => 'Products', 'url' => '/products'],
+                           ['label' => 'Category', 'url' => '/categories'],
+                      ],
+            ],
             ['label' => Yii::t('app', 'Employees'), 'url' => ['/employees']],
             Yii::$app->user->isGuest ? (
                 ['label' => Yii::t('app', 'Login'), 'url' => ['/site/login']]

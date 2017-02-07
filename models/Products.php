@@ -29,8 +29,9 @@ class Products extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'string', 'max' => 256],
+            [['sku'], 'string', 'max' => 256],
             [['category_id'], 'integer'],
-            [['name', 'category_id'], 'required'],
+            [['name', 'category_id', 'sku'], 'required'],
         ];
     }
 
@@ -41,6 +42,7 @@ class Products extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'sku' => 'SKU',
             'name' => 'Nombre',
             'category_id' => 'Categoria',
         ];
