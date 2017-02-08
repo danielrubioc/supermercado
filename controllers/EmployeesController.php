@@ -93,7 +93,7 @@ class EmployeesController extends Controller
             }else
             {   
                 $model->save();
-                $avatar->saveAs('uploads/' . $avatar->baseName . '.' . $avatar->extension);
+                $avatar->saveAs('uploads/' . 'avatars/' . $avatar->baseName . '.' . $avatar->extension);
             }
 
             Yii::$app->session->setFlash('success', "Guardado correctamente!");
@@ -127,7 +127,7 @@ class EmployeesController extends Controller
             }else
             {   
                 $model->save();
-                $avatar->saveAs('uploads/' . $avatar->baseName . '.' . $avatar->extension);
+                $avatar->saveAs('uploads/' . 'avatars/' . $avatar->baseName . '.' . $avatar->extension);
             }
 
 
